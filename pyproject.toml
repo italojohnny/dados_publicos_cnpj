@@ -11,6 +11,9 @@ aiohttp = "^3.11.2"
 click = "^8.1.7"
 
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
