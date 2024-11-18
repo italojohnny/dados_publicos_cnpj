@@ -1,19 +1,10 @@
-import aiohttp
 import asyncio
 import click
 
+from dados_publicos_cnpj.extract.util import check_url_availability
+
 
 URL = "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/"
-
-
-async def check_url_availability(url):
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get(url) as response:
-                return 200 <= response.status < 300
-
-        except aiohttp.ClientError:
-            return False
 
 
 @click.group()
