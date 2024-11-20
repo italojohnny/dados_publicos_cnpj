@@ -1,0 +1,29 @@
+name: PIPELINE
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: OBTEM REPOSITORIO
+        uses: actions/checkout@v3
+
+      - name: OBTEM PYTHON
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: OBTEM POETRY
+        run: pip install poetry
+
+      - name: INSTALA DEPENDENCIAS
+        run: poetry install
+
+      - name: EXECUTA TESTES UNITARIOS
+        run: poetry run pytest --cov-report=xml
+
+      - name: PUBLICAR RELATORIO DE COBERTURA
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
